@@ -36,6 +36,15 @@
       font-size: 50px;
     }
 
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base);
+    }
     .controls {
       margin-bottom: 50px;
     }
@@ -43,9 +52,24 @@
     input {
       width: 100px;
     }
+
+    :root {
+      --base : #BADA55;
+      --spacing: 10px;
+      --blur: 10px;
+    }
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input');
+    function handleUpdate() {
+      // console.log(this.value)
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
   </script>
 
 </body>
