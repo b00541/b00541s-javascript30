@@ -57,6 +57,7 @@
    When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
 
   -->
+  <button onclick="uncheck()" >uncheck all</button>
   <div class="inbox">
     <div class="item">
       <input type="checkbox">
@@ -97,6 +98,47 @@
   </div>
 
 <script>
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]')
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('click', handleCheck)
+})
+
+
+function uncheck() {
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      checkbox.checked = false
+    }
+  })
+}
+
+
+
+
+
+
+let lastChecked 
+
+function handleCheck(e) {
+console.log(e)
+let inbetween = false
+//checks if shift key is down and the box is checked
+if (e.shiftKey && this.checked) {
+  //checks for checkboxes between checked checkboxes
+  checkboxes.forEach(checkbox => {
+    if (checkbox === this || checkbox === lastChecked) {
+      inbetween = !inbetween
+    }
+    if (inbetween) {
+      checkbox.checked = true 
+    }
+  })
+}
+
+lastChecked = this
+console.log(lastChecked)
+}
+
 </script>
 </body>
 </html>
