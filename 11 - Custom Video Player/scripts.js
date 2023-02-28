@@ -89,6 +89,7 @@ window.addEventListener('keydown', (e) => {
     togglePlay()
   }
 })
+
 //forward and back skip on left and right button press
 window.addEventListener('keydown', (e) => {
   // console.log(e.key);
@@ -114,8 +115,6 @@ window.addEventListener('keydown', (e) => {
     video.volume -= 0.5
   }
 })
-
-
 
 // Press f to pay respect
 window.addEventListener('keydown', (e) => {
